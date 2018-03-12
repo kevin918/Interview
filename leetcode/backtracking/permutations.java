@@ -1,4 +1,4 @@
-package leetcode;
+package backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class permutations {
     }
     public static List<List<Integer>> solution(int[] input) {
         List<List<Integer>> res = new ArrayList<>();
-        help(res, new ArrayList<>(), input);
+        help(res, new ArrayList<Integer>(), input);
         return res;
     }
 
