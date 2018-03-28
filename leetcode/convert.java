@@ -7,43 +7,35 @@ import static org.testng.Assert.assertEquals;
 
 public class convert {
     public static void main (String[] str) {
-
+        String s = "1 7 ";
+        System.out.println(s.trim());
     }
 
     static long convert (String ipAddress) throws Exception {
         if (ipAddress == null || ipAddress == "") {
-            throw new Exception("invalid ip address");
+            throw new Exception("ip address is null/empty");
         }
         String[] ipAddressInArray = ipAddress.split("\\.");
 
         long result = 0;
         for (int i = 0; i < ipAddressInArray.length; i++) {
             int power = 3 - i;
-            String s = ipAddressInArray[i];
+            String s = ipAddressInArray[i].trim();
             int len = s.length();
-            if (!isNumeric(s.trim())) {
-                throw new Exception("invalid ip address");
-            }
+
             if (len > 1) {
-                for (int j = 1; j < len-1; j++) {
-                    if( s.charAt(j) == ' ') {
-                        throw new Exception("spaces between digits");
+                for (int j = 0; j < len; j++) {
+                    if(!Character.isDigit(s.charAt(j))) {
+                        throw new Exception("contains non digits");
                     }
                 }
             }
+
             int ip = Integer.parseInt(ipAddressInArray[i].trim());
             result += ip * Math.pow(256, power);
         }
 
         return result;
-    }
-
-    private static boolean isNumeric(String str)
-    {
-        NumberFormat formatter = NumberFormat.getInstance();
-        ParsePosition pos = new ParsePosition(0);
-        formatter.parse(str, pos);
-        return str.length() == pos.getIndex();
     }
 
     @Test
