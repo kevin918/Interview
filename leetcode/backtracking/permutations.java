@@ -15,7 +15,7 @@ public class permutations {
     }
     public static List<List<Integer>> solution(int[] input) {
         List<List<Integer>> res = new ArrayList<>();
-        help(res, new ArrayList<Integer>(), input);
+        help(res, new ArrayList<>(), input);
         return res;
     }
 
